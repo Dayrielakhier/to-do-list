@@ -1,10 +1,8 @@
-import { format } from "date-fns"
-
 class ToDo {
     constructor(title, desc, dueDate, priority) {
         this.title = title
         this.desc = desc
-        this.dueDate = format(new Date(dueDate), "d MMMM yyyy") 
+        this.dueDate = dueDate
         this.priority = priority
         this.completeness = "notDone"
         this.id = crypto.randomUUID()
