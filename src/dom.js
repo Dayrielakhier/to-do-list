@@ -19,13 +19,6 @@ const submit = document.querySelector("#submit")
 const initialText = submit.textContent
 const cancel = document.querySelector("#cancel")
 
-addCategory("grocery")
-addCategory("fitness")
-const blabla = new ToDo("buy", "whatever", "2025-11-07", "none")
-const bleble = new ToDo("work", "whatever", "2025-11-07", "none")
-addTaskToList("grocery", blabla)
-addTaskToList("fitness", bleble)
-
 let isEditing = false
 let currentTask
 
@@ -38,6 +31,15 @@ function displayTasks(obj, key) {
 
         const checkbox = document.createElement("input")
         checkbox.setAttribute("type", "checkbox")
+        checkbox.addEventListener("click", () => {
+            task.changeCompleteness()
+            localStorage.setItem("todo", JSON.stringify(categories))
+        })
+        if (task.completeness === "done") {
+            checkbox.checked = true
+        } else {
+            checkbox.checked = false
+        }
 
         const taskWrapper = document.createElement("div")
         const taskTitle = createElementWithClass("div", "task-title")
@@ -100,7 +102,9 @@ function display() {
             delButton.appendChild(del)
             delButton.addEventListener("click", () => {
                 removeCategory(key)
+                displayedKeys.delete(key)
                 listDiv.remove()
+                tasksDiv.replaceChildren(newTask)
             })
             listDiv.appendChild(delButton)
         })
@@ -119,7 +123,10 @@ function displayAllTasks() {
     }
 }
 
-allTasks.addEventListener("click", displayAllTasks)
+allTasks.addEventListener("click", () => {
+    displayAllTasks()
+    tasksDiv.removeChild(newTask)
+})
 
 function populateFormData(task) {
     title.value = task.title
@@ -139,6 +146,7 @@ function updateTask(task, e) {
         taskDiv.querySelector(".task-title").textContent = task.title
         taskDiv.querySelector(".task-date").textContent = task.formattedDate
     }
+    localStorage.setItem("todo", JSON.stringify(categories))
     form.reset()
     dialog.close()
 }
@@ -209,4 +217,3 @@ function createElementWithClass(element, className) {
 }
 
 display()
-console.log(categories)
