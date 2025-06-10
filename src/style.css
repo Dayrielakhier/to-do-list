@@ -1,0 +1,66 @@
+.container {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+}
+
+.categories {
+    display: grid;
+    padding: 2rem;
+    gap: 2rem;
+    justify-items: start;
+}
+
+.tasks {
+    display: grid;
+    padding: 2rem;
+    gap: 2rem;
+    align-items: start;
+    justify-items: start;
+}
+
+.task {
+    display: flex;
+    gap: 1rem;
+    width: 80%;
+}
+
+.eddel {
+    display: flex;
+    margin-left: auto;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: lightgray;
+}
+
+.list-div {
+    width: 100%;
+    display: flex;
+}
+
+.list:focus {
+    background-color: lightgray;
+}
+
+img {
+    width: 20px;
+    height: 20px;
+}
+
+form > div {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    text-align: right;
+    width: 80px;
+    padding-right: 10px;
+}
